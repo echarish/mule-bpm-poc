@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Sat Jan 14 14:33:35 JST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-0159-9b77-77bb-00000ea506b8 
+on database directory memory:/Volumes/AppleDrive/MuleAPITraining/mule-bpm-poc/muleEmbeddedDB  with class loader org.mule.module.launcher.MuleApplicationClassLoader[mule-bpm-poc]@57adfab0 
+Loaded from file:/Volumes/AppleDrive/MuleAPITraining/.mule/apps/mule-bpm-poc/lib/derby-10.8.1.2.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_45-b14
+user.dir=/Volumes/AppleDrive/MuleAPITraining/mule-bpm-poc
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

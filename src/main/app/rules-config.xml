@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<mule xmlns:quartz="http://www.mulesoft.org/schema/mule/quartz"
+	xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+	xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting"
+	xmlns:jms="http://www.mulesoft.org/schema/mule/jms"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:bpm="http://www.mulesoft.org/schema/mule/bpm"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/quartz http://www.mulesoft.org/schema/mule/quartz/current/mule-quartz.xsd
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mule/scripting/current/mule-scripting.xsd
+http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/current/mule-jms.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/bpm http://www.mulesoft.org/schema/mule/bpm/3.6/mule-bpm.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+
+	<flow name="DroolsFlow">
+		<vm:inbound-endpoint ref="DroolsEndpoint"
+			exchange-pattern="request-response" doc:name="VM" />
+        <logger level="INFO" doc:name="Logger"/>
+        <logger message="-------------------------- Rules Triggered --------------------------------------" level="INFO" doc:name="Logger Rules"/>
+        <logger message="#[payload]" level="INFO" doc:name="Logger Payload"/>
+		<bpm:rules rulesDefinition="routingRules.drl" doc:name="BPM Rules"
+			initialFacts-ref="NoFactsBean" />
+		<expression-transformer evaluator="groovy"
+			expression="message.getPayload().getObject()" doc:name="Expression" />
+	</flow>
+
+</mule>
